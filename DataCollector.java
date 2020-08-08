@@ -21,14 +21,14 @@ public class DataCollector
       TicketQueue ticketThread = new TicketQueue(queue, ticketNum);
       Thread test = new Thread(ticketThread);
       test.start();
-
+   
       String[] ticketQuanityNumArray = new String[100];
       for (int x = 1; x <= 100; x++) {
          String val = String.valueOf(x);
          if (x < 10) val = " " + val;
          ticketQuanityNumArray[x-1] = val;
       }
-
+   
       JTextField nameField = new JTextField(5);
       JSpinner quanityField = new JSpinner(new SpinnerListModel(ticketQuanityNumArray));
       JPanel panel = new JPanel();
@@ -37,10 +37,11 @@ public class DataCollector
       panel.add(Box.createHorizontalStrut(15)); // a spacer
       panel.add(new JLabel("Quanity:"));
       panel.add(quanityField);
-
+   
       do {
          int result = JOptionPane.showConfirmDialog(null, panel, "Name and number of tickets: ", JOptionPane.OK_CANCEL_OPTION); //JOptionPane for user to enter information
-         if (result == JOptionPane.OK_OPTION) {
+         if (result == JOptionPane.OK_OPTION)
+         {
             HashMap<String, String> order = new HashMap<String, String>();
             order.put("Name", nameField.getText()); // puts name input in HashMap
             String[] split = quanityField.getValue().toString().split(" ");// splits input to separate name from quantity
@@ -49,7 +50,16 @@ public class DataCollector
             nameField.setText("");
             quanityField.setValue(" 1");
          }
-      } while(true);
-   }
-
+            
+         else 
+         {
+            String exit = ("No order will be processed at this time. Exiting program."); 
+            JOptionPane.showMessageDialog(null, exit); 
+            System.exit(0);
+         }
+               
+      }
+        while(true); 
+   } 
 }
+
