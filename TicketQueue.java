@@ -1,8 +1,6 @@
 
 import ch04.threads.*;
-import jdk.jshell.execution.Util;
 import ch04.queues.*;
-import support.LLNode;
 import java.lang.Thread;
 import java.util.HashMap;
 import java.util.UUID;
@@ -12,17 +10,19 @@ public class TicketQueue implements Runnable {
    protected LinkedQueue<HashMap<String, String>> newOrders;
    protected Counter counter;
    protected int maxTicketNum;
+   protected Boolean running;
 
-   public TicketQueue(LinkedQueue<HashMap<String, String>> newOrders, int maxTicketNum)
+   public TicketQueue(LinkedQueue<HashMap<String, String>> newOrders, int maxTicketNum, Counter counter, Boolean running)
    {
       this.processedOrders = new LinkedQueue<HashMap<String, String>>();
       this.newOrders = newOrders;
-      this.counter = new Counter();
+      this.counter = counter;
       this.maxTicketNum = maxTicketNum;
+      this.running = running;
    }
 
    public void run() {
-      while (counter.getCount() < maxTicketNum) {
+      while (counter.getCount() < maxTicketNum && running) {
          try {
             Thread.sleep(10000);// wait time between processing orders
          } catch (InterruptedException e) {
