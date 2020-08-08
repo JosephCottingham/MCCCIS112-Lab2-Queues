@@ -10,6 +10,13 @@ public class DataCollector
    static int ticketNum = 100;
    public static void main (String [] args)
    {
+      //Directions for the user to purchase tickets.
+      String intro = ("Thank you for purchasing your tickets with us! Please follow the directions provided. See box below.");
+      System.out.println("There are 100 tickets available for purhcase. The number of tickets available will be updated every 10 seconds.");
+      System.out.println("Use the box provided to enter your name and number of tickets you would like. Hit OK to purchase, Cancel to exit.");
+      JOptionPane.showMessageDialog(null, intro); 
+      
+      //Creation of queue to hold tickets
       LinkedQueue<HashMap<String, String>> queue = new LinkedQueue<HashMap<String, String>>();
       TicketQueue ticketThread = new TicketQueue(queue, ticketNum);
       Thread test = new Thread(ticketThread);
@@ -35,10 +42,10 @@ public class DataCollector
          int result = JOptionPane.showConfirmDialog(null, panel, "Name and number of tickets: ", JOptionPane.OK_CANCEL_OPTION); //JOptionPane for user to enter information
          if (result == JOptionPane.OK_OPTION) {
             HashMap<String, String> order = new HashMap<String, String>();
-            order.put("Name", nameField.getText());
-            String[] split = quanityField.getValue().toString().split(" ");
-            order.put("Quantity", split[split.length-1]);
-            queue.enqueue(order);
+            order.put("Name", nameField.getText()); // puts name input in HashMap
+            String[] split = quanityField.getValue().toString().split(" ");// splits input to separate name from quantity
+            order.put("Quantity", split[split.length-1]); //puts quantity in HashMap
+            queue.enqueue(order);// enqueues order onto queue
             nameField.setText("");
             quanityField.setValue(" 1");
          }

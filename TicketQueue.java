@@ -24,7 +24,7 @@ public class TicketQueue implements Runnable {
    public void run() {
       while (counter.getCount() < maxTicketNum) {
          try {
-            Thread.sleep(10000);
+            Thread.sleep(10000);// wait time between processing orders
          } catch (InterruptedException e) {
             e.printStackTrace();
          }
