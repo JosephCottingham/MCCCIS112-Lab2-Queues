@@ -28,6 +28,7 @@ public class TicketQueue implements Runnable {
          } catch (InterruptedException e) {
             e.printStackTrace();
          }
+        //return information provided to user about their order as it is processed
          System.out.println("\n\nInitializing Tix Queue...");
          System.out.println(String.valueOf(maxTicketNum - counter.getCount()) + " Tickets available for order!");
          if (newOrders.size()>0){

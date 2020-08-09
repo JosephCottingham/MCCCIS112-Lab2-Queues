@@ -2,7 +2,7 @@ import ch04.threads.Counter;
 import java.lang.Thread;
 import javax.swing.*;
 import java.util.Arrays;
-
+//Unique feature: Dynamic GUI that limits user ticket quantity to amount of tickets available at purchase
 public class TicketCountChecker implements Runnable {
     Counter counter;
     int lastCheck;
