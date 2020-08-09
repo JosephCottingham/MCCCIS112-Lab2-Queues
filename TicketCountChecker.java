@@ -9,7 +9,8 @@ public class TicketCountChecker implements Runnable {
     Boolean running;
     int ticketNum;
     SpinnerListModel quanitySpinnerListModel;
-    public TicketCountChecker(Counter counter, Boolean running, SpinnerListModel quanitySpinnerListModel, int ticketNum){
+    public TicketCountChecker(Counter counter, Boolean running, SpinnerListModel quanitySpinnerListModel, int ticketNum) //ticket counter to keep track of remaining tickets
+    {
         this.counter = counter;
         this.lastCheck = counter.getCount();
         this.running = running;
@@ -36,9 +37,6 @@ public class TicketCountChecker implements Runnable {
            if (x < 10) val = " " + val;
            if (x < 100) val = " " + val;
            countStringArray[x-1] = val;
-        }
-        for (String x : countStringArray) {
-           System.out.print(x);
         }
         return countStringArray;
      }
